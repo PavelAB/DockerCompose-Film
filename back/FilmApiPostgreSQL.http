@@ -1,0 +1,6 @@
+@FilmApiPostgreSQL_HostAddress = http://localhost:5109
+
+GET {{FilmApiPostgreSQL_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,28 @@
+name: Docker_Film
+services:
+    db:
+        build:
+            context: ./database
+            dockerfile: Dockerfile
+        restart: always
+        shm_size: 128mb
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_PASSWORD: ${MAIN_PASSWORD}
+    api: 
+        depends_on:
+            - db
+        build:
+            context: ./back
+            dockerfile: Dockerfile
+        ports: 
+            - 8080:8080
+    front:
+        depends_on:
+            - api
+        build:
+            context: ./DockerMovie
+            dockerfile: Dockerfile
+        ports: 
+            - 4210:80  
